@@ -30,7 +30,7 @@ public class User {
     @Column(nullable = false, unique = true, length = 255)
     private String email;
 
-    @Column(nullable = false, updatable = false)
+    @Column(nullable = false, updatable = true)
     private Instant createdAt = Instant.now();
 
     public Long getId() {
@@ -59,6 +59,10 @@ public class User {
 
     public Instant getCreatedAt() {
         return createdAt;
+    }
+
+    public void setCreatedAt(Instant createdAt) {
+        this.createdAt = createdAt;
     }
 }
 

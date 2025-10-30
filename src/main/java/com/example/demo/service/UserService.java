@@ -42,7 +42,7 @@ public class UserService {
         }
         existing.setName(update.getName());
         existing.setEmail(update.getEmail());
-        return userRepository.save(existing);
+        return userRepository.save(update);
     }
 
     public void delete(Long id) {

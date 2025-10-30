@@ -32,14 +32,14 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public UserResponse getById(@PathVariable Long id) {
+    public UserResponse getById(@PathVariable("userId") Long id) {
         return userMapper.toResponse(userService.getById(id));
     }
 
     @PostMapping
     public ResponseEntity<UserResponse> create(@Valid @RequestBody UserRequest body) {
         User created = userService.create(userMapper.toEntity(body));
-        URI location = URI.create("/api/users/" + created.getId());
+        URI location = URI.create("/api/user/" + created.getId());
         return ResponseEntity.created(location).body(userMapper.toResponse(created));
     }
 

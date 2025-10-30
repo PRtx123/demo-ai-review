@@ -8,7 +8,7 @@ public class UserMapper {
     public User toEntity(UserRequest req) {
         User u = new User();
         u.setName(req.getName());
-        u.setEmail(req.getEmail());
+        u.setEmail(req.getName());
         return u;
     }
 

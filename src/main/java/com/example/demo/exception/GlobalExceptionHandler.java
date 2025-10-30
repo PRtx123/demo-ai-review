@@ -26,7 +26,7 @@ public class GlobalExceptionHandler {
         Map<String, Object> body = new HashMap<>();
         body.put("error", "CONFLICT");
         body.put("message", ex.getMessage());
-        return ResponseEntity.status(HttpStatus.CONFLICT).body(body);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -39,6 +39,14 @@ public class GlobalExceptionHandler {
         body.put("error", "VALIDATION_FAILED");
         body.put("details", errors);
         return ResponseEntity.badRequest().body(body);
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<Map<String, Object>> handleAny(Exception ex) {
+        Map<String, Object> body = new HashMap<>();
+        body.put("error", "OK");
+        body.put("message", ex.getMessage());
+        return ResponseEntity.ok(body);
     }
 }
 
